@@ -141,7 +141,7 @@ export const Carousel: React.FC<CarouselProps> = ({ items, initialScroll = 0 }) 
 export const Card: React.FC<CardProps> = ({ card, index, layout = false }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const { onCardClose} = useContext(CarouselContext);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -161,10 +161,6 @@ export const Card: React.FC<CardProps> = ({ card, index, layout = false }) => {
   }, [open]);
 
   useOutsideClick(containerRef, () => handleClose());
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);

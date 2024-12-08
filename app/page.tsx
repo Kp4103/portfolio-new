@@ -29,22 +29,6 @@ import SparklesText from "@/components/ui/sparkles-text";
 import BlurIn from "@/components/ui/blur-in";
 
 function CustomGridDemo() {
-  const [isBentoVisible, setIsBentoVisible] = useState(false);
-  const bentoRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (bentoRef.current) {
-        const rect = bentoRef.current.getBoundingClientRect();
-        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-          setIsBentoVisible(true);
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const testimonials = [
     {
