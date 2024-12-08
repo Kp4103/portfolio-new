@@ -570,7 +570,7 @@ function CustomGridDemo() {
             </span>
           </p>
           <p className="text-sm md:text-lg text-neutral-500 max-w-2xl mx-auto py-4">
-            Break the traditional boundaries. Work with me from anywhere. I'm flexible to work with different timezones.
+            Break the traditional boundaries. Work with me from anywhere. I&apos;m flexible to work with different timezones.
           </p>
         </div>
         <WorldMap
