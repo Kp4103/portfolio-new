@@ -16,6 +16,7 @@ import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import OrbitingCircles from "@/components/ui/orbiting-circles";
 import WorldMap from "@/components/ui/world-map";
+import { useWindowSize } from '@/hooks/useWindowSize';
 import {
   IconBrandGithub,
   IconTerminal2,
@@ -29,6 +30,9 @@ import SparklesText from "@/components/ui/sparkles-text";
 import BlurIn from "@/components/ui/blur-in";
 
 function CustomGridDemo() {
+
+    const size = useWindowSize();
+  const isMobile = size.width < 640; // Tailwind's `sm` breakpoint is 640px
 
   const testimonials = [
     {
@@ -73,33 +77,33 @@ function CustomGridDemo() {
       title: "2024",
       content: (
         <div>
-          <p className="text-neutral-300 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
+          <p className="text-neutral-300 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4 md:mb-8">
             Won Rajasthan Police Hackathon
           </p>
-          <p className="text-neutral-300 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
+          <p className="text-neutral-300 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4 md:mb-8">
             Built Project PixaShield, SocialMood and FraudFinder. Project PixaShield stood as the top performing project at Rajasthan Police Hackathon 1.0
           </p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Image
               src="/images/Pixashield.webp"
-              alt="startup template"
+              alt="PixaShield project"
               width={500}
               height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              className="rounded-lg object-cover h-40 sm:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             />
             <Image
               src="/images/FraudFinder.webp"
-              alt="startup template"
+              alt="FraudFinder project"
               width={500}
               height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              className="rounded-lg object-cover h-40 sm:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             />
             <Image
               src="/images/SocialMood.png"
-              alt="startup template"
+              alt="SocialMood project"
               width={500}
               height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              className="rounded-lg object-cover h-40 sm:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             />
           </div>
         </div>
@@ -113,22 +117,22 @@ function CustomGridDemo() {
             Research and Development Intern
           </p>
           <p className="text-neutral-300 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
-            I worked as a research and development intern at Holo Inventions Inc. for a duartion of 6 months.
-            </p>
-          <div className="grid grid-cols-2 gap-4">
+            I worked as a research and development intern at Holo Inventions Inc. for a duration of 6 months.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Image
               src="/images/holo 1.webp"
-              alt="hero template"
+              alt="Holo Inventions Inc. 1"
               width={500}
               height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              className="rounded-lg object-cover h-40 sm:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             />
             <Image
               src="/images/holo 2.webp"
-              alt="feature template"
+              alt="Holo Inventions Inc. 2"
               width={500}
               height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              className="rounded-lg object-cover h-40 sm:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             />
           </div>
         </div>
@@ -138,26 +142,26 @@ function CustomGridDemo() {
       title: "Early 2023",
       content: (
         <div>
-          <p className="text-neutral-300 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
+          <p className="text-neutral-300 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4 md:mb-8">
             Developed ML models and Full stack websites
           </p>
-          <p className="text-neutral-300 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
+          <p className="text-neutral-300 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4 md:mb-8">
             Manufacturing defect detection model helped me stand as a Runner up at Deep Learning Hackathon. I also developed a CodingHub which was a Fullstack website.
           </p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Image
               src="/images/broken detection.webp"
-              alt="hero template"
+              alt="Manufacturing defect detection"
               width={500}
               height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              className="rounded-lg object-cover h-40 sm:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             />
             <Image
               src="/images/codinghub.png"
-              alt="feature template"
+              alt="CodingHub"
               width={500}
               height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+              className="rounded-lg object-cover h-40 sm:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
             />
           </div>
         </div>
@@ -388,191 +392,208 @@ function CustomGridDemo() {
 
   return (
     <div className="min-h-screen w-full bg-neutral-900 flex flex-col items-center justify-center overflow-hidden">
-      <div id="about" className="flex flex-col items-center justify-center h-screen text-center">
-        <BlurIn
-          word={
-            <SparklesText
-              text="Turning Ideas into Effortless User"
-              className="text-4xl md:text-6xl font-semibold tracking-tight text-white"
-            />
-          }
-          duration={1}
-        />
-        <BlurIn
-          word={
-            <SparklesText
-              text="Experiences"
-              className="text-4xl md:text-6xl font-semibold tracking-tight text-white"
-            />
-          }
-          className="mt-4"
-          duration={1.5}
-        />
-        <TextGenerateEffect
-          words="Kunal Pawar, here. I'm a Next.js developer based in India."
-          className="relative z-10 text-2xl md:text-4xl mt-6 leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-white"
-          filter={true}
-          duration={1.5}
-        />
+<div id="about" className="flex flex-col items-center justify-center min-h-screen text-center px-4 py-8">
+  <BlurIn
+    word={
+      <SparklesText
+        text="Turning Ideas into Effortless User"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white"
+      />
+    }
+    duration={1}
+  />
+  <BlurIn
+    word={
+      <SparklesText
+        text="Experiences"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white"
+      />
+    }
+    className="mt-2 sm:mt-4"
+    duration={1.5}
+  />
+  <TextGenerateEffect
+    words="Kunal Pawar, here. I'm a Next.js developer based in India."
+    className="relative z-10 text-xl sm:text-2xl md:text-3xl mt-4 leading-tight max-w-xl mx-auto text-center tracking-tight font-medium text-white"
+    filter={true}
+    duration={1.5}
+  />
 
-        <motion.div
-          className="mt-6 space-y-4 space-x-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }} // Delay the fade-in after text animation
-        >
-          <ShinyButton>Take me to projects</ShinyButton>
-          <ShinyButton>Download resume</ShinyButton>
-        </motion.div>
-      </div>
+  <motion.div
+    className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-4"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 2, duration: 1 }}
+  >
+    <ShinyButton className="w-full sm:w-auto">Take me to projects</ShinyButton>
+    <ShinyButton className="w-full sm:w-auto">Download resume</ShinyButton>
+  </motion.div>
+</div>
+
 
       <div className="w-full h-full py-20">
       <Carousel items={cards} />
       </div>
 
-    <div className="flex justify-center space-x-20">
-        <div className="relative flex mt-20 h-[500px] w-[600px] flex-col items-center justify-center overflow-hidden rounded-lg bg-neutral-900 md:shadow-xl">
-        <span className="pointer-events-none whitespace-pre-wrap bg-neutral-900 text-center text-4xl font-semibold leading-none text-white dark:from-white dark:to-black">
-          My Techstack
-        </span>
-  
-        {/* Inner Circles */}
-        <OrbitingCircles
-          className="size-[30px] border-none bg-transparent"
-          duration={20}
-          delay={6}
-          radius={60}
-        >
-          <Icons.HTML />
-        </OrbitingCircles>
-        <OrbitingCircles
-          className="size-[30px] border-none bg-transparent"
-          duration={20}
-          delay={12}
-          radius={60}
-        >
-          <Icons.CSS />
-        </OrbitingCircles>
+    <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start lg:space-x-20 space-y-20 lg:space-y-0 w-full px-4 lg:px-8 py-20">
+    <div className="relative flex h-[500px] w-full max-w-[300px] sm:max-w-sm md:max-w-md lg:max-w-lg flex-col items-center justify-center overflow-hidden rounded-lg bg-neutral-900 shadow-xl p-4">
+      <span className="pointer-events-none whitespace-pre-wrap bg-neutral-900 text-center text-xl sm:text-2xl md:text-4xl font-semibold leading-none text-white mb-4">
+        My Techstack
+      </span>
 
-        <OrbitingCircles
-          className="size-[30px] border-none bg-transparent"
-          radius={60}
-          duration={20}
-          delay={19}
-        >
-          <Icons.JS />
-        </OrbitingCircles>
-  
-        {/* Outer Circles (reverse) */}
-        <OrbitingCircles
-          className="size-[40px] border-none bg-transparent"
-          radius={130}
-          duration={20}
-          delay={5}
-          reverse
-        >
-          <Icons.Next />
-        </OrbitingCircles>
+      {/* Inner Circles */}
+      <OrbitingCircles
+        className="size-[20px] sm:size-[25px] md:size-[30px] border-none bg-transparent"
+        duration={20}
+        delay={6}
+        radius={40}
+        sm-radius={50}
+        md-radius={60}
+      >
+        <Icons.HTML />
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[20px] sm:size-[25px] md:size-[30px] border-none bg-transparent"
+        duration={20}
+        delay={12}
+        radius={40}
+        sm-radius={50}
+        md-radius={60}
+      >
+        <Icons.CSS />
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[20px] sm:size-[25px] md:size-[30px] border-none bg-transparent"
+        radius={40}
+        sm-radius={50}
+        md-radius={60}
+        duration={20}
+        delay={19}
+      >
+        <Icons.JS />
+      </OrbitingCircles>
 
-
-        <OrbitingCircles
-          className="size-[40px] border-none bg-transparent"
-          duration={20}
-          delay={10}
-          radius={130}
-          reverse
-        >
+      {/* Middle Circles */}
+      <OrbitingCircles
+        className="size-[25px] sm:size-[35px] md:size-[40px] border-none bg-transparent"
+        radius={90}
+        sm-radius={110}
+        md-radius={130}
+        duration={20}
+        delay={5}
+        reverse
+      >
+        <Icons.Next />
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[25px] sm:size-[35px] md:size-[40px] border-none bg-transparent"
+        duration={20}
+        delay={10}
+        radius={90}
+        sm-radius={110}
+        md-radius={130}
+        reverse
+      >
         <Icons.Mongo />
-        </OrbitingCircles>
-
-        <OrbitingCircles
-          className="size-[50px] border-none bg-transparent"
-          duration={20}
-          delay={15}
-          radius={130}
-          reverse
-        >
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[30px] sm:size-[40px] md:size-[50px] border-none bg-transparent"
+        duration={20}
+        delay={15}
+        radius={90}
+        sm-radius={110}
+        md-radius={130}
+        reverse
+      >
         <Icons.Mysql />
-        </OrbitingCircles>
-
-        <OrbitingCircles
-          className="size-[40px] border-none bg-transparent"
-          duration={20}
-          delay={20}
-          radius={130}
-          reverse
-        >
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[25px] sm:size-[35px] md:size-[40px] border-none bg-transparent"
+        duration={20}
+        delay={20}
+        radius={90}
+        sm-radius={110}
+        md-radius={130}
+        reverse
+      >
         <Icons.firebase />
-        </OrbitingCircles>
+      </OrbitingCircles>
 
-        <OrbitingCircles
-          className="size-[50px] border-none bg-transparent"
-          duration={20}
-          delay={4}
-          radius={190}
-        >
-          <Icons.tf />
-        </OrbitingCircles>
+      {/* Outer Circles */}
+      <OrbitingCircles
+        className="size-[30px] sm:size-[40px] md:size-[50px] border-none bg-transparent"
+        duration={20}
+        delay={4}
+        radius={140}
+        sm-radius={165}
+        md-radius={190}
+      >
+        <Icons.tf />
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[30px] sm:size-[40px] md:size-[50px] border-none bg-transparent"
+        duration={20}
+        delay={9}
+        radius={140}
+        sm-radius={165}
+        md-radius={190}
+      >
+        <Icons.pytorch />
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[30px] sm:size-[40px] md:size-[50px] border-none bg-transparent"
+        duration={20}
+        delay={13}
+        radius={140}
+        sm-radius={165}
+        md-radius={190}
+      >
+        <Icons.opencv />
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[30px] sm:size-[40px] md:size-[50px] border-none bg-transparent"
+        duration={20}
+        delay={17}
+        radius={140}
+        sm-radius={165}
+        md-radius={190}
+      >
+        <Icons.github />
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[30px] sm:size-[40px] md:size-[50px] border-none bg-transparent"
+        duration={20}
+        delay={20}
+        radius={140}
+        sm-radius={165}
+        md-radius={190}
+      >
+        <Icons.python />
+      </OrbitingCircles>
+    </div>
 
-        <OrbitingCircles
-          className="size-[50px] border-none bg-transparent"
-          duration={20}
-          delay={9}
-          radius={190}
-        >
-          <Icons.pytorch />
-        </OrbitingCircles>
-
-        <OrbitingCircles
-          className="size-[50px] border-none bg-transparent"
-          duration={20}
-          delay={13}
-          radius={190}
-        >
-          <Icons.opencv />
-        </OrbitingCircles>
-
-        <OrbitingCircles
-          className="size-[50px] border-none bg-transparent"
-          duration={20}
-          delay={17}
-          radius={190}
-        >
-          <Icons.github />
-        </OrbitingCircles>
-
-        <OrbitingCircles
-          className="size-[50px] border-none bg-transparent"
-          duration={20}
-          delay={5}
-          radius={190}
-        >
-          <Icons.python />
-        </OrbitingCircles>
+      <div className="py-6 dark:bg-black bg-neutral-900 w-full px-4">
+      <div className="max-w-4xl mx-auto text-center">
+        <p className="font-bold text-2xl sm:text-4xl dark:text-white text-white">
+          Remote{" "}
+          <span className="text-neutral-400">
+            {"Connectivity".split("").map((char, idx) => (
+              <motion.span
+                key={idx}
+                className="inline-block"
+                initial={{ x: -10, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.3, delay: idx * 0.02 }}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </span>
+        </p>
+        <p className="text-sm sm:text-lg text-neutral-500 max-w-2xl mx-auto py-4">
+          Break the traditional boundaries. Work with me from anywhere. I&apos;m flexible to work with different timezones.
+        </p>
       </div>
-
-      <div className=" py-10 dark:bg-black bg-neutral-900 w-[80%]">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="font-bold text-xl md:text-4xl dark:text-white text-white">
-            Remote{" "}
-            <span className="text-neutral-400">
-              {"Connectivity".split("").map((word, idx) => (
-                <motion.span
-                  key={idx}
-                  className="inline-block"
-                  initial={{ x: -10, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: idx * 0.04 }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </span>
-          </p>
-          <p className="text-sm md:text-lg text-neutral-500 max-w-2xl mx-auto py-4">
-            Break the traditional boundaries. Work with me from anywhere. I&apos;m flexible to work with different timezones.
-          </p>
-        </div>
         <WorldMap
           dots={[
             {
@@ -610,12 +631,13 @@ function CustomGridDemo() {
       </div>
 
     </div>
-
-      <div id="projects" className="h-[15rem] w-full bg-neutral-900 flex flex-col items-center justify-center overflow-hidden rounded-md">
-      <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20">
+      
+      <div className="w-full bg-neutral-900 flex flex-col items-center justify-center overflow-hidden">
+      <div id="projects" className="w-full py-12 sm:py-20 flex flex-col items-center justify-center overflow-hidden rounded-md">
+      <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center text-white relative z-20 mb-8">
         Projects
       </h1>
-      <div className="w-[40rem] h-40 relative">
+      <div className="w-full max-w-[40rem] h-40 relative">
         {/* Gradients */}
         <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
         <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
@@ -637,7 +659,8 @@ function CustomGridDemo() {
       </div>
     </div>
 
-    <div className="h-[30rem] w-full flex items-center justify-center space-x-10">
+    <div className="w-full px-4 sm:px-6 flex flex-col items-center justify-center space-y-10 sm:space-y-12 md:space-y-16">
+    <div className="w-full flex flex-col lg:flex-row items-center justify-center space-y-10 lg:space-y-0 lg:space-x-10">
       <PinContainer
         title="CodingHub"
         href="https://github.com/Kp4103/Codinghub"
@@ -717,7 +740,7 @@ function CustomGridDemo() {
       </PinContainer>
     </div>
 
-    <div className="h-[30rem] w-full flex items-center justify-center space-x-10">
+    <div className="w-full flex flex-col lg:flex-row items-center justify-center space-y-10 lg:space-y-0 lg:space-x-10">
       <PinContainer
         title="PixaShield"
         href="https://github.com/Kp4103/RJPOLICE_HACK_238_PIXASHIELD_3"
@@ -769,6 +792,8 @@ function CustomGridDemo() {
           </div>
         </div>
       </PinContainer>
+      </div>
+    </div>
     </div>
 
       <BlurIn
