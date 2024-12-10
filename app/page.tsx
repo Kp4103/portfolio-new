@@ -17,6 +17,7 @@ import { RainbowButton } from "@/components/ui/rainbow-button";
 import OrbitingCircles from "@/components/ui/orbiting-circles";
 import WorldMap from "@/components/ui/world-map";
 import { useWindowSize } from '@/hooks/useWindowSize';
+import Link from "next/link"
 import {
   IconBrandGithub,
   IconTerminal2,
@@ -390,6 +391,27 @@ function CustomGridDemo() {
     <Card key={card.src} card={card} index={index} />
   ));
 
+  const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    const projectsSection = document.getElementById("projects")
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
+  const handleDownload = () => {
+    // Assuming the resume is stored in the public directory
+    const resumeUrl = "/new resume.pdf"
+    
+    // Create a temporary anchor element
+    const link = document.createElement("a")
+    link.href = resumeUrl
+    link.download = "Kunal_Pawar_Resume.pdf" // Set the desired file name for download
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   return (
     <div className="min-h-screen w-full bg-neutral-900 flex flex-col items-center justify-center overflow-hidden">
 <div id="about" className="flex flex-col items-center justify-center min-h-screen text-center px-4 py-8">
@@ -412,6 +434,7 @@ function CustomGridDemo() {
     className="mt-2 sm:mt-4"
     duration={1.5}
   />
+
   <TextGenerateEffect
     words="Kunal Pawar, here. I'm a Next.js developer based in India."
     className="relative z-10 text-xl sm:text-2xl md:text-3xl mt-4 leading-tight max-w-xl mx-auto text-center tracking-tight font-medium text-white"
@@ -425,10 +448,27 @@ function CustomGridDemo() {
     animate={{ opacity: 1 }}
     transition={{ delay: 2, duration: 1 }}
   >
-    <ShinyButton className="w-full sm:w-auto">Take me to projects</ShinyButton>
-    <ShinyButton className="w-full sm:w-auto">Download resume</ShinyButton>
+  <Link href="#projects" onClick={scrollToProjects} passHref>
+      <ShinyButton className="w-full sm:w-auto text-base sm:text-lg font-semibold z-50">
+        Take me to projects
+      </ShinyButton>
+  </Link>
+  <ShinyButton 
+      onClick={handleDownload}
+      className="w-full sm:w-auto text-base sm:text-lg font-semibold z-50"
+      aria-label="Download resume"
+    >
+      Download resume
+    </ShinyButton>
   </motion.div>
 </div>
+
+    <div className="flex justify-center fixed bottom-4 left-0 right-0 z-50">
+      <FloatingDock
+        mobileClassName="translate-y-30 left-40" // only for demo, remove for production
+        items={links}
+      />
+    </div>
 
 
       <div className="w-full h-full py-20">
@@ -821,13 +861,6 @@ function CustomGridDemo() {
     </div>
     </div>
 
-      <div className="fixed bottom-10 w-full flex justify-center p-4 sm:p-6 z-30">
-        <FloatingDock
-          items={links}
-          desktopClassName="grid grid-cols-4 gap-3 sm:grid-cols-5 md:grid-cols-7 bg-neutral-800 bg-opacity-80 rounded-lg p-2 sm:p-3 md:p-4 max-w-xs sm:max-w-md md:max-w-lg"
-          mobileClassName="grid grid-cols-4 gap-2 p-2"
-        />
-      </div>
       <div className="w-full py-4 bg-neutral-900 text-left mt-auto">
       <p className="text-xs sm:text-sm text-neutral-300">
         &copy; {new Date().getFullYear()} Kunal Pawar. All Rights Reserved.

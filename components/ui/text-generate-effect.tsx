@@ -33,7 +33,7 @@ export const TextGenerateEffect = ({
 
   const renderWords = () => {
     return (
-      <motion.div ref={scope} className="inline-flex flex-wrap whitespace-pre-wrap">
+      <motion.div ref={scope} className="inline-flex flex-wrap justify-center whitespace-pre-wrap">
         {wordsArray.map((word, idx) => (
           <motion.span
             key={`${word}-${idx}`}
