@@ -854,7 +854,7 @@ function CustomGridDemo() {
     <p className="text-neutral-300 dark:text-neutral-200 text-xs sm:text-base mb-6">
       Begin your journey now
     </p>
-    <div id="contact" className="flex flex-col md:flex-row space-y-8 md:space-y-8 space-x-0 md:space-x-4">
+    <div id="contact" className="flex flex-col md:flex-row space-y-8 md:space-y-8 space-x-0 md:space-x-4 z-50">
       <a href="mailto:kunal4103@gmail.com">
         <RainbowButton>Contact me!</RainbowButton>
       </a>
