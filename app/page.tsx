@@ -50,6 +50,13 @@ function CustomGridDemo() {
       designation: "Satisfied Client",
       src: "/images/vibhanshu.png",
     },
+    {
+      quote:
+        "Kunal is an exceptional web developer and Figma designer who combines creativity with technical expertise. He delivered a stunning, user-friendly website that exceeded my expectations!",
+      name: "Ishan Naik",
+      designation: "Satisfied Client",
+      src: "/images/ishan.jpg",
+    },
   ];
 
   const data1 = [
