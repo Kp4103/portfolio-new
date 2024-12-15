@@ -814,6 +814,32 @@ function CustomGridDemo() {
           </div>
         </div>
       </PinContainer>
+
+      <PinContainer
+        title="VoidPulse"
+        href="https://voidpulse.tebex.io/?action=preview&signature=48d70804d0aafa2bd8700adc29746c217a2d2c761b7f9f1a78335b7c13209c2e&expires=1734494070"
+      >
+        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
+          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
+          VoidPulse
+          </h3>
+          <div className="text-base !m-0 !p-0 font-normal">
+            <span className="text-slate-500">
+            Tebex based webstore
+            </span>
+          </div>
+          <div className="relative flex flex-1 w-full mt-4 overflow-hidden">
+            <div className="relative w-full h-0 pb-[56.25%] rounded-lg overflow-hidden">
+              <Image
+                src="/images/voidpulse.png"
+                alt="Tebex based Webstore"
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </PinContainer>
       </div>
     </div>
     </div>
