@@ -38,7 +38,7 @@ function CustomGridDemo() {
   const testimonials = [
     {
       quote:
-        "Cryocreza is an amazing web designer and developer. They took all of my input and turned it into an absolute masterpiece. They were patient with me when bug testing and were able to understand what my end goal was which is a huge plus when working with any developer. 10/10 would recommend to anyone who needs masterful work done to their website!",
+        "Kunal is an amazing web designer and developer. He took all of my input and turned it into an absolute masterpiece. He was patient with me when bug testing and was able to understand what my end goal was which is a huge plus when working with any developer. 10/10 would recommend to anyone who needs masterful work done to their website!",
       name: "Jared",
       designation: "Web Development",
     },
