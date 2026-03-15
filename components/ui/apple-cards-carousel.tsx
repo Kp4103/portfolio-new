@@ -105,7 +105,6 @@ export const Carousel: React.FC<CarouselProps> = ({ items, initialScroll = 0 }) 
                     duration: 0.5,
                     delay: 0.2 * index,
                     ease: "easeOut",
-                    once: true,
                   },
                 }}
                 key={`card-${index}`}
