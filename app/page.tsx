@@ -10,7 +10,7 @@ import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import Image from "next/image";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { PinContainer } from "@/components/ui/3d-pin";
-import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { TestimonialCards } from "@/components/ui/testimonial-cards";
 import { Timeline } from "@/components/ui/timeline";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { RainbowButton } from "@/components/ui/rainbow-button";
@@ -38,24 +38,27 @@ function CustomGridDemo() {
   const testimonials = [
     {
       quote:
-        "Kunal consistently delivers his freelance projects quickly and efficiently, demonstrating exceptional teamwork and strong work ethics. His dedication and professionalism make him a valuable asset to any team.",
-      name: "Ishaan Gupta",
-      designation: "Satisfied Client",
-      src: "/images/ishaan.jpg",
+        "Cryocreza is an amazing web designer and developer. They took all of my input and turned it into an absolute masterpiece. They were patient with me when bug testing and were able to understand what my end goal was which is a huge plus when working with any developer. 10/10 would recommend to anyone who needs masterful work done to their website!",
+      name: "Jared",
+      designation: "Web Development",
     },
     {
       quote:
-        "I’ve witnessed his exceptional skill in both full-stack development and machine learning, consistently delivering robust, user-focused solutions. His technical expertise and results-driven approach make him invaluable to any project or team.",
-      name: "Vibhanshu Pandey",
-      designation: "Satisfied Client",
-      src: "/images/vibhanshu.png",
+        "Great response. Very extremely patient seller, we went through everything like it was needed. He was really super helpful and I’m thankful that he helped me a lot.",
+      name: "Matic Bonica",
+      designation: "Web Development",
     },
     {
       quote:
-        "Kunal is an exceptional web developer and Figma designer who combines creativity with technical expertise. He delivered a stunning, user-friendly website that exceeded my expectations!",
-      name: "Ishan Naik",
-      designation: "Satisfied Client",
-      src: "/images/ishan.jpg",
+        "Amazing work and met all my needs.",
+      name: "Drafter",
+      designation: "Web Development",
+    },
+    {
+      quote:
+        "Kunal has amazed me for the first and what is likely not going to be the last time. I requested a portfolio page to advertise my services, and he has completely outdone himself, with excellent communication and work. He was so patient with me even when I was nitpicky and wanted to add a lot of changes to the site, and he was patient and willing to do it. I had set a deadline of a month and a half, and he completed it within two weeks. I would highly recommend! Thank you Kunal!",
+      name: "certifiedlevi",
+      designation: "Web Development",
     },
   ];
 
@@ -849,8 +852,8 @@ function CustomGridDemo() {
         className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20 mt-20"
       />
 
-      <div id="testimonials" className="z-20">
-      <AnimatedTestimonials testimonials={testimonials} />
+      <div id="testimonials" className="z-20 w-full max-w-6xl">
+      <TestimonialCards testimonials={testimonials} />
       </div>
 
       <div className="w-full">
