@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { FloatingDock } from "@/components/ui/floating-dock";
@@ -8,11 +8,9 @@ import ShinyButton from "@/components/ui/shiny-button";
 import { motion } from "framer-motion";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import Image from "next/image";
-import { SparklesCore } from "@/components/ui/sparkles";
-import { PinContainer } from "@/components/ui/3d-pin";
 import { TestimonialCards } from "@/components/ui/testimonial-cards";
 import { Timeline } from "@/components/ui/timeline";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
+
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import OrbitingCircles from "@/components/ui/orbiting-circles";
 import WorldMap from "@/components/ui/world-map";
@@ -22,6 +20,7 @@ import {
   IconBrandGithub,
   IconTerminal2,
   IconBrandLinkedin,
+  IconBrandDiscord,
   IconInfoCircle,
   IconMessageDots,
   IconUserCircle,
@@ -33,7 +32,8 @@ import BlurIn from "@/components/ui/blur-in";
 function CustomGridDemo() {
 
     const size = useWindowSize();
-  const isMobile = size.width < 640; // Tailwind's `sm` breakpoint is 640px
+  const isMobile = size.width < 640;
+  const [workTab, setWorkTab] = useState<"web" | "bot">("web");
 
   const testimonials = [
     {
@@ -159,35 +159,6 @@ function CustomGridDemo() {
     },
   ];
 
-  const words = [
-    {
-      text: "Take",
-    },
-    {
-      text: "your",
-    },
-    {
-      text: "websites",
-    },
-    {
-      text: "to",
-    },
-    {
-      text: "next",
-      className: "text-blue-300 dark:text-blue-500",
-    },
-    {
-      text: "level",
-      className: "text-blue-300 dark:text-blue-500",
-    },
-    {
-      text: "with",
-    },
-    {
-      text: "me",
-      className: "text-blue-300 dark:text-blue-500",
-    },
-  ];
 
   const links = [
     {
@@ -657,194 +628,103 @@ function CustomGridDemo() {
 
     </div>
       
-      <div className="w-full bg-neutral-900 flex flex-col items-center justify-center overflow-hidden">
-      <div id="projects" className="w-full py-12 sm:py-20 flex flex-col items-center justify-center overflow-hidden rounded-md">
-      <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center text-white relative z-20 mb-8">
-        Projects
-      </h1>
-      <div className="w-full max-w-[40rem] h-40 relative">
-        {/* Gradients */}
-        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
- 
-        {/* Core component */}
-        <SparklesCore
-          background="transparent"
-          minSize={0.4}
-          maxSize={1}
-          particleDensity={1200}
-          className="w-full h-full"
-          particleColor="#FFFFFF"
-        />
- 
-        {/* Radial Gradient to prevent sharp edges */}
-        <div className="absolute inset-0 w-full h-full bg-neutral-900 [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+    {/* Projects Section */}
+    <div id="projects" className="w-full max-w-6xl z-20 min-h-screen flex flex-col items-center justify-center px-4 md:px-8 py-12">
+      <div className="text-center mb-10">
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white">
+          My{" "}
+          <span className="bg-[length:200%_100%] animate-[shimmer_3s_linear_infinite] bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 via-pink-400 to-purple-400" style={{ paddingBottom: "0.15em", lineHeight: 1.4 }}>
+            Work
+          </span>
+        </h2>
       </div>
-    </div>
 
-    <div className="w-full px-4 sm:px-6 flex flex-col items-center justify-center space-y-10 sm:space-y-12 md:space-y-16">
-    <div className="w-full flex flex-col lg:flex-row items-center justify-center space-y-10 lg:space-y-0 lg:space-x-10">
-      <PinContainer
-        title="CodingHub"
-        href="https://github.com/Kp4103/Codinghub"
-      >
-        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
-          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-            CodingHub
-          </h3>
-          <div className="text-base !m-0 !p-0 font-normal">
-            <span className="text-slate-500">
-              CodingHub - Educational Platform
-            </span>
-          </div>
-          <div className="relative flex flex-1 w-full mt-4 overflow-hidden">
-            <div className="relative w-full h-0 pb-[56.25%] rounded-lg overflow-hidden">
-              <Image
-                src="/images/codinghub.png"
-                alt="CodingHub Educational Platform"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </PinContainer>
-
-      <PinContainer
-        title="Manufacturing Defect Detection"
-        href="https://github.com/Kp4103/Manufacturing-Defect-Detection-Hackathon"
-      >
-        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
-          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-          Manufacturing Defect Detection
-          </h3>
-          <div className="text-base !m-0 !p-0 font-normal">
-            <span className="text-slate-500">
-            Defect Detection for Broken Cups and TVs
-            </span>
-          </div>
-          <div className="relative flex flex-1 w-full mt-4 overflow-hidden">
-            <div className="relative w-full h-0 pb-[56.25%] rounded-lg overflow-hidden">
-              <Image
-                src="/images/broken detection.webp"
-                alt="CodingHub Educational Platform"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </PinContainer>
-
-      <PinContainer
-        title="SocialMood"
-        href="https://github.com/Kp4103/SocialMood"
-      >
-        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
-          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-          SocialMood 
-          </h3>
-          <div className="text-base !m-0 !p-0 font-normal">
-            <span className="text-slate-500">
-              A Sentiment Detection & Analysis Platform
-            </span>
-          </div>
-          <div className="relative flex flex-1 w-full mt-4 overflow-hidden">
-            <div className="relative w-full h-0 pb-[56.25%] rounded-lg overflow-hidden">
-              <Image
-                src="/images/SocialMood.png"
-                alt="CodingHub Educational Platform"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </PinContainer>
-    </div>
-
-    <div className="w-full flex flex-col lg:flex-row items-center justify-center space-y-10 lg:space-y-0 lg:space-x-10">
-      <PinContainer
-        title="PixaShield"
-        href="https://github.com/Kp4103/RJPOLICE_HACK_238_PIXASHIELD_3"
-      >
-        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
-          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-            PixaShield
-          </h3>
-          <div className="text-base !m-0 !p-0 font-normal">
-            <span className="text-slate-500">
-            AI Intelligent Camera Solution
-            </span>
-          </div>
-          <div className="relative flex flex-1 w-full mt-4 overflow-hidden">
-            <div className="relative w-full h-0 pb-[56.25%] rounded-lg overflow-hidden">
-              <Image
-                src="/images/Pixashield.webp"
-                alt="CodingHub Educational Platform"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </PinContainer>
-
-      <PinContainer
-        title="FraudFinder"
-        href="https://github.com/Kp4103/FraudFinder"
-      >
-        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
-          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-          FraudFinder
-          </h3>
-          <div className="text-base !m-0 !p-0 font-normal">
-            <span className="text-slate-500">
-            Ethereum fraud detection
-            </span>
-          </div>
-          <div className="relative flex flex-1 w-full mt-4 overflow-hidden">
-            <div className="relative w-full h-0 pb-[56.25%] rounded-lg overflow-hidden">
-              <Image
-                src="/images/FraudFinder.webp"
-                alt="CodingHub Educational Platform"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </PinContainer>
-
-      <PinContainer
-        title="Gourmet Haven"
-        href="https://restaurant-demo-pi.vercel.app/"
-      >
-        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
-          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-          Gourmet Haven
-          </h3>
-          <div className="text-base !m-0 !p-0 font-normal">
-            <span className="text-slate-500">
-            Web application for a restaurant
-            </span>
-          </div>
-          <div className="relative flex flex-1 w-full mt-4 overflow-hidden">
-            <div className="relative w-full h-0 pb-[56.25%] rounded-lg overflow-hidden">
-              <Image
-                src="/images/resto-demo.png"
-                alt="Website for a restaurant"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </PinContainer>
+      {/* Tabs */}
+      <div className="flex items-center gap-2 mb-8 p-1 rounded-full bg-neutral-800/60 border border-neutral-700/40">
+        <button
+          onClick={() => setWorkTab("web")}
+          className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+            workTab === "web"
+              ? "bg-purple-500/20 text-purple-300 border border-purple-500/30"
+              : "text-neutral-400 hover:text-neutral-200 border border-transparent"
+          }`}
+        >
+          Web Development
+        </button>
+        <button
+          onClick={() => setWorkTab("bot")}
+          className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+            workTab === "bot"
+              ? "bg-indigo-500/20 text-indigo-300 border border-indigo-500/30"
+              : "text-neutral-400 hover:text-neutral-200 border border-transparent"
+          }`}
+        >
+          Discord Bots
+        </button>
       </div>
-    </div>
+
+      {/* Web Development Projects */}
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full ${workTab === "web" ? "" : "hidden"}`}>
+          {[
+            { title: "InfraCharm", desc: "Business website for a construction & infrastructure company", href: "https://infracharm.com/" },
+            { title: "Unlimited Projects Studio", desc: "Creative studio portfolio & services showcase", href: "https://unlimitedprojectstudio.com/" },
+            { title: "Certified Levi", desc: "Portfolio website for a Minecraft skin artist", href: "https://certifiedlevi.com/" },
+          ].map((project) => (
+            <a key={project.title} href={project.href} target="_blank" rel="noopener noreferrer"
+              className="group relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_-15px_rgba(168,85,247,0.15)]">
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-purple-500/0 via-purple-500/0 to-blue-500/0 group-hover:from-purple-500/20 group-hover:via-transparent group-hover:to-blue-500/20 transition-all duration-500 pointer-events-none" />
+              {/* Live site preview */}
+              <div className="relative h-44 w-full overflow-hidden">
+                <div className="absolute inset-0 origin-top-left scale-[0.25] w-[400%] h-[400%]">
+                  <iframe
+                    src={project.href}
+                    title={project.title}
+                    className="w-full h-full border-0 pointer-events-none"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
+                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+                  <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                  </svg>
+                </div>
+              </div>
+              <div className="relative p-4">
+                <h3 className="text-white font-semibold text-base mb-1.5 group-hover:text-purple-300 transition-colors duration-300">{project.title}</h3>
+                <p className="text-neutral-500 text-sm leading-relaxed">{project.desc}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+
+      {/* Discord Bot Projects */}
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full ${workTab === "bot" ? "" : "hidden"}`}>
+          {[
+            { title: "ExylCraft Music Bot", desc: "Custom music bot built for the ExylCraft Discord server", client: "ExylCraft" },
+            { title: "Wave Bot", desc: "Multi-purpose bot for Unlimited Projects Studio", client: "Unlimited Projects Studio" },
+            { title: "Wiki Bot", desc: "Information & wiki lookup bot for Unlimited Projects Studio", client: "Unlimited Projects Studio" },
+          ].map((project) => (
+            <div key={project.title}
+              className="group relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_-15px_rgba(99,102,241,0.15)]">
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-indigo-500/0 via-indigo-500/0 to-blue-500/0 group-hover:from-indigo-500/20 group-hover:via-transparent group-hover:to-blue-500/20 transition-all duration-500 pointer-events-none" />
+              {/* Bot icon area */}
+              <div className="relative h-36 w-full overflow-hidden bg-gradient-to-br from-indigo-500/10 via-neutral-900 to-purple-500/10 flex items-center justify-center">
+                <div className="relative w-16 h-16 group-hover:scale-110 transition-transform duration-500" style={{ perspective: "200px" }}>
+                  <div className="w-full h-full rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-[0_8px_30px_rgba(99,102,241,0.4)] group-hover:shadow-[0_12px_40px_rgba(99,102,241,0.5)] transition-shadow duration-500" style={{ transform: "rotateX(10deg) rotateY(-10deg)" }}>
+                    <IconBrandDiscord className="w-8 h-8 text-white" />
+                  </div>
+                </div>
+              </div>
+              <div className="relative p-4 flex flex-col h-[140px]">
+                <h3 className="text-white font-semibold text-base mb-1.5 group-hover:text-indigo-300 transition-colors duration-300">{project.title}</h3>
+                <p className="text-neutral-500 text-sm leading-relaxed flex-1">{project.desc}</p>
+                <span className="text-[11px] text-indigo-400/60 font-medium mt-2">{project.client}</span>
+              </div>
+            </div>
+          ))}
+        </div>
     </div>
 
       <BlurIn
@@ -860,20 +740,64 @@ function CustomGridDemo() {
       <Timeline data={data1} />
     </div>
 
-    <div className="flex flex-col items-center justify-center h-[40rem]">
-    <TypewriterEffectSmooth words={words} />
-    <p className="text-neutral-300 dark:text-neutral-200 text-2xl sm:text-4xl mb-6">
-      Begin your journey now
-    </p>
-    <div id="contact" className="flex flex-col md:flex-row space-y-8 md:space-y-8 space-x-0 md:space-x-4 z-50">
-      <a href="mailto:kunal4103@gmail.com">
-        <RainbowButton>Contact me!</RainbowButton>
-      </a>
-    </div>
+    {/* Contact Section */}
+    <div id="contact" className="relative w-full max-w-5xl z-20 min-h-screen flex flex-col items-center justify-center px-4 md:px-8">
+      {/* Header */}
+      <div className="text-center mb-14">
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight pb-2">
+          Let&apos;s work{" "}
+          <span className="bg-[length:200%_100%] animate-[shimmer_3s_linear_infinite] bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 via-pink-400 to-purple-400" style={{ paddingBottom: "0.15em", lineHeight: 1.4 }}>
+            together
+          </span>
+        </h2>
+        <p className="text-neutral-400 text-base md:text-lg max-w-md mx-auto">
+          Have a project in mind? Reach out through any of these channels.
+        </p>
+      </div>
+
+      {/* Contact links — inline horizontal */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full max-w-2xl">
+        {/* Email */}
+        <a
+          href="mailto:kunal4103@gmail.com"
+          className="group flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-neutral-800 border border-neutral-700/60 transition-all duration-300 hover:border-purple-500/50 hover:bg-neutral-800/80"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-400 shrink-0"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <span className="text-neutral-200 text-sm font-medium">kunal4103@gmail.com</span>
+        </a>
+
+        {/* LinkedIn */}
+        <a
+          href="https://linkedin.com/in/kunal-pawar4103"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-neutral-800 border border-neutral-700/60 transition-all duration-300 hover:border-blue-500/50 hover:bg-neutral-800/80"
+        >
+          <IconBrandLinkedin className="w-5 h-5 text-blue-400" />
+          <span className="text-neutral-200 text-sm font-medium">LinkedIn</span>
+        </a>
+
+        {/* Discord */}
+        <button
+          onClick={() => {
+            navigator.clipboard.writeText("cryocreza");
+            const el = document.getElementById("discord-copy-text");
+            if (el) {
+              el.textContent = "Username copied!";
+              setTimeout(() => { el.textContent = "cryocreza"; }, 2000);
+            }
+          }}
+          className="group flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-neutral-800 border border-neutral-700/60 transition-all duration-300 hover:border-indigo-500/50 hover:bg-neutral-800/80"
+        >
+          <IconBrandDiscord className="w-5 h-5 text-indigo-400" />
+          <span id="discord-copy-text" className="text-neutral-200 text-sm font-medium transition-all">cryocreza</span>
+        </button>
+      </div>
     </div>
 
-      <div className="w-full py-4 bg-neutral-900 text-left mt-auto">
-      <p className="text-xs sm:text-sm text-neutral-300">
+    {/* Footer */}
+    <div className="w-full z-20 py-6 px-4 md:px-8 text-center">
+      <p className="text-xs text-neutral-600">
         &copy; {new Date().getFullYear()} Kunal Pawar. All Rights Reserved.
       </p>
     </div>
