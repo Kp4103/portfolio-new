@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
-import { FloatingDock } from "@/components/ui/floating-dock";
 import Image from "next/image";
 import { TestimonialCards } from "@/components/ui/testimonial-cards";
 
@@ -18,6 +17,8 @@ import {
   IconInfoCircle,
   IconMessageDots,
   IconUserCircle,
+  IconBriefcase,
+  IconStarFilled,
 } from "@tabler/icons-react";
 
 function CustomGridDemo() {
@@ -54,39 +55,6 @@ function CustomGridDemo() {
   ];
 
 
-  const links = [
-    {
-      title: "About",
-      icon: <IconInfoCircle className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-neutral-500 dark:text-neutral-300" />,
-      href: "#about",
-    },
-    {
-      title: "Projects",
-      icon: <IconTerminal2 className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-neutral-500 dark:text-neutral-300" />,
-      href: "#projects",
-    },
-    {
-      title: "Testimonials",
-      icon: <IconUserCircle className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-neutral-500 dark:text-neutral-300" />,
-      href: "#testimonials",
-    },
-    {
-      title: "Contact",
-      icon: <IconMessageDots className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-neutral-500 dark:text-neutral-300" />,
-      href: "#contact",
-    },
-    {
-      title: "LinkedIn",
-      icon: <IconBrandLinkedin className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-neutral-500 dark:text-neutral-300" />,
-      href: "https://linkedin.com/in/kunal-pawar4103",
-    },
-    {
-      title: "GitHub",
-      icon: <IconBrandGithub className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-neutral-500 dark:text-neutral-300" />,
-      href: "https://github.com/Kp4103",
-    },
-  ];
-   
   const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     const projectsSection = document.getElementById("projects")
@@ -168,16 +136,51 @@ function CustomGridDemo() {
   </div>
 </div>
 
-    <div className="flex justify-center fixed bottom-4 left-0 right-0 z-50">
-      <FloatingDock
-        mobileClassName="translate-y-30 left-40" // only for demo, remove for production
-        items={links}
-      />
-    </div>
+    {/* Navigation */}
+    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 px-2 py-2 rounded-full bg-neutral-900/80 border border-neutral-800/60 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+      {[
+        { label: "About", href: "#about", icon: <IconInfoCircle className="w-[18px] h-[18px]" /> },
+        { label: "Services", href: "#services", icon: <IconBriefcase className="w-[18px] h-[18px]" /> },
+        { label: "Work", href: "#projects", icon: <IconTerminal2 className="w-[18px] h-[18px]" /> },
+        { label: "Reviews", href: "#testimonials", icon: <IconUserCircle className="w-[18px] h-[18px]" /> },
+        { label: "Why Me", href: "#why-me", icon: <IconStarFilled className="w-[18px] h-[18px]" /> },
+        { label: "Contact", href: "#contact", icon: <IconMessageDots className="w-[18px] h-[18px]" /> },
+      ].map((item) => (
+        <a
+          key={item.label}
+          href={item.href}
+          className="group relative flex items-center justify-center w-10 h-10 rounded-full text-neutral-500 transition-all duration-300 hover:text-white hover:bg-neutral-800"
+        >
+          {item.icon}
+          <span className="absolute -top-8 px-2 py-1 rounded-md bg-neutral-800 border border-neutral-700/50 text-[10px] text-neutral-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+            {item.label}
+          </span>
+        </a>
+      ))}
+      <div className="w-px h-5 bg-neutral-800 mx-1" />
+      <a href="mailto:kunal4103@gmail.com"
+        className="group relative flex items-center justify-center w-10 h-10 rounded-full text-neutral-500 transition-all duration-300 hover:text-purple-400 hover:bg-neutral-800">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        <span className="absolute -top-8 px-2 py-1 rounded-md bg-neutral-800 border border-neutral-700/50 text-[10px] text-neutral-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">Email</span>
+      </a>
+      <button
+        onClick={() => {
+          navigator.clipboard.writeText("cryocreza");
+          const el = document.getElementById("dock-discord-tooltip");
+          if (el) {
+            el.textContent = "Copied!";
+            setTimeout(() => { el.textContent = "Discord"; }, 2000);
+          }
+        }}
+        className="group relative flex items-center justify-center w-10 h-10 rounded-full text-neutral-500 transition-all duration-300 hover:text-indigo-400 hover:bg-neutral-800">
+        <IconBrandDiscord className="w-[18px] h-[18px]" />
+        <span id="dock-discord-tooltip" className="absolute -top-8 px-2 py-1 rounded-md bg-neutral-800 border border-neutral-700/50 text-[10px] text-neutral-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">Discord</span>
+      </button>
+    </nav>
 
 
     {/* Services Section */}
-    <div className="w-full max-w-5xl z-20 min-h-screen flex flex-col items-center justify-center px-4 md:px-8 py-12">
+    <div id="services" className="w-full max-w-5xl z-20 md:min-h-screen flex flex-col items-center justify-center px-4 md:px-8 py-16 md:py-12">
       <div className="text-center mb-14">
         <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white">
           What I{" "}
@@ -187,9 +190,9 @@ function CustomGridDemo() {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-0 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 w-full">
         {/* Web Development */}
-        <div className="group relative p-8 md:p-10 border border-neutral-800 md:border-r-0 rounded-2xl md:rounded-r-none transition-all duration-500 hover:bg-neutral-800/30">
+        <div className="group relative p-8 md:p-10 border border-neutral-800 rounded-2xl md:border-r-0 md:rounded-r-none transition-all duration-500 hover:bg-neutral-800/30">
           {/* Top accent line */}
           <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -241,7 +244,7 @@ function CustomGridDemo() {
         </div>
 
         {/* Tebex Stores */}
-        <div className="group relative p-8 md:p-10 border border-neutral-800 md:border-l-0 rounded-2xl md:rounded-l-none transition-all duration-500 hover:bg-neutral-800/30">
+        <div className="group relative p-8 md:p-10 border border-neutral-800 rounded-2xl md:border-l-0 md:rounded-l-none transition-all duration-500 hover:bg-neutral-800/30">
           <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
           <span className="text-6xl font-bold text-neutral-600 group-hover:text-emerald-500/20 transition-colors duration-500 select-none">03</span>
@@ -376,7 +379,7 @@ function CustomGridDemo() {
       </div>
 
     {/* Why Me Section */}
-    <div className="w-full max-w-5xl z-20 py-20 md:py-28 px-4 md:px-8">
+    <div id="why-me" className="w-full max-w-5xl z-20 py-20 md:py-28 px-4 md:px-8">
       <div className="text-center mb-14">
         <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white">
           Why{" "}
@@ -537,7 +540,7 @@ function CustomGridDemo() {
     {/* Scroll to top */}
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="group fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-neutral-800 border border-neutral-700/60 flex items-center justify-center transition-all duration-300 hover:bg-neutral-700 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+      className="group fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-neutral-800 border border-neutral-700/60 hidden sm:flex items-center justify-center transition-all duration-300 hover:bg-neutral-700 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]"
       aria-label="Scroll to top"
     >
       <svg className="w-4 h-4 text-neutral-400 group-hover:text-purple-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

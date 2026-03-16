@@ -87,8 +87,15 @@
   }
 }
 
-html {
+html, body {
   scroll-behavior: smooth;
+  scrollbar-width: none;
+  background-color: #171717;
+  overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes fadeUp {
