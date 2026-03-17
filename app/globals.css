@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 30 35% 90%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -90,12 +90,28 @@
 html, body {
   scroll-behavior: smooth;
   scrollbar-width: none;
-  background-color: #171717;
   overflow-x: hidden;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
 }
 
 html::-webkit-scrollbar {
   display: none;
+}
+
+/* Smooth day-to-night transition */
+html body {
+  transition: background-color 1.5s ease, color 1.2s ease;
+}
+
+html.transitioning *,
+html.transitioning body {
+  transition-property: background-color, border-color, color, fill, stroke, opacity !important;
+  transition-timing-function: ease !important;
+  transition-duration: 1.2s !important;
 }
 
 @keyframes fadeUp {
