@@ -414,7 +414,7 @@ function CustomGridDemo() {
                 </div>
               </div>
               {/* Large preview */}
-              <div className="rounded-xl overflow-hidden border mx-auto relative" style={{ borderColor: 'rgba(255,255,255,0.08)', maxWidth: '75%' }}>
+              <div className="rounded-xl overflow-hidden border mx-auto relative w-full md:max-w-[75%]" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
                 {obsidianScreens.map((screen, i) => (
                   <img
                     key={screen.label}
@@ -431,7 +431,7 @@ function CustomGridDemo() {
                 ))}
               </div>
               {/* Thumbnails + tags row */}
-              <div className="flex gap-3 mt-3 items-start">
+              <div className="flex flex-col md:flex-row gap-3 mt-3 items-start">
                 <div className="flex gap-2 flex-shrink-0">
                   {obsidianScreens.map((screen, i) => (
                     <button
