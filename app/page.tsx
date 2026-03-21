@@ -292,10 +292,10 @@ function CustomGridDemo() {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 mb-8 p-1 rounded-full bg-white/50 dark:bg-neutral-800/60 border border-neutral-300/40 dark:border-neutral-700/40 backdrop-blur-sm">
+      <div className="flex items-center gap-1 sm:gap-2 mb-8 p-1 mx-4 sm:mx-0 rounded-full bg-white/50 dark:bg-neutral-800/60 border border-neutral-300/40 dark:border-neutral-700/40 backdrop-blur-sm">
         <button
           onClick={() => setWorkTab("web")}
-          className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+          className={`px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
             workTab === "web"
               ? "bg-purple-500/20 text-purple-600 dark:text-purple-300 border border-purple-500/30"
               : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 border border-transparent"
@@ -305,7 +305,7 @@ function CustomGridDemo() {
         </button>
         <button
           onClick={() => setWorkTab("bot")}
-          className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+          className={`px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
             workTab === "bot"
               ? "bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 border border-indigo-500/30"
               : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 border border-transparent"
@@ -315,7 +315,7 @@ function CustomGridDemo() {
         </button>
         <button
           onClick={() => setWorkTab("themes")}
-          className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+          className={`px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
             workTab === "themes"
               ? "bg-cyan-500/20 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30"
               : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 border border-transparent"
@@ -432,7 +432,7 @@ function CustomGridDemo() {
               </div>
               {/* Thumbnails + tags row */}
               <div className="flex flex-col md:flex-row gap-3 mt-3 items-start">
-                <div className="flex gap-2 flex-shrink-0">
+                <div className="grid grid-cols-4 gap-2 w-full md:w-auto md:flex md:flex-shrink-0">
                   {obsidianScreens.map((screen, i) => (
                     <button
                       key={screen.label}
@@ -441,7 +441,6 @@ function CustomGridDemo() {
                       style={{
                         borderColor: i === activeScreen ? 'rgba(168,85,247,0.6)' : 'rgba(255,255,255,0.06)',
                         opacity: i === activeScreen ? 1 : 0.5,
-                        width: '80px',
                       }}
                     >
                       <img src={screen.img} alt={screen.label} className="w-full h-11 object-cover object-top" />
