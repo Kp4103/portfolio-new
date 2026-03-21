@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 import Image from "next/image";
@@ -26,7 +26,22 @@ function CustomGridDemo() {
 
     const size = useWindowSize();
   const isMobile = size.width < 640;
-  const [workTab, setWorkTab] = useState<"web" | "bot">("web");
+  const [workTab, setWorkTab] = useState<"web" | "bot" | "themes">("web");
+  const [activeScreen, setActiveScreen] = useState(0);
+  const obsidianScreens = [
+    { label: "Login", img: "/obsidian/login.png" },
+    { label: "Dashboard", img: "/obsidian/dashboard.png" },
+    { label: "Console", img: "/obsidian/console.png" },
+    { label: "Admin Panel", img: "/obsidian/admin.png" },
+  ];
+
+  useEffect(() => {
+    if (workTab !== "themes") return;
+    const interval = setInterval(() => {
+      setActiveScreen((prev) => (prev + 1) % obsidianScreens.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [workTab, obsidianScreens.length]);
   const { resolvedTheme } = useTheme();
 
   const testimonials = [
@@ -298,6 +313,16 @@ function CustomGridDemo() {
         >
           Discord Bots
         </button>
+        <button
+          onClick={() => setWorkTab("themes")}
+          className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+            workTab === "themes"
+              ? "bg-cyan-500/20 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30"
+              : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 border border-transparent"
+          }`}
+        >
+          Pterodactyl Themes
+        </button>
       </div>
 
       {/* Web Development Projects */}
@@ -362,6 +387,85 @@ function CustomGridDemo() {
             </div>
           ))}
         </div>
+
+      {/* Pterodactyl Themes */}
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full ${workTab === "themes" ? "" : "hidden"}`}>
+        {/* Obsidian Theme */}
+        <div className="group relative rounded-2xl overflow-hidden bg-[#f0e6d8] dark:bg-neutral-900 border border-neutral-400/40 dark:border-neutral-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_-15px_rgba(168,85,247,0.25)] sm:col-span-2 lg:col-span-3">
+          <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-purple-500/0 via-purple-500/0 to-cyan-500/0 group-hover:from-purple-500/20 group-hover:via-transparent group-hover:to-cyan-500/20 transition-all duration-500 pointer-events-none" />
+          {/* Theme preview area */}
+          <div className="relative w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a14 0%, #12122a 50%, #0a0a14 100%)' }}>
+            {/* Floating orbs decoration */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute w-32 h-32 rounded-full opacity-20 blur-3xl" style={{ background: 'radial-gradient(circle, #a855f7, transparent)', top: '10%', right: '20%' }} />
+              <div className="absolute w-24 h-24 rounded-full opacity-15 blur-3xl" style={{ background: 'radial-gradient(circle, #22d3ee, transparent)', bottom: '20%', left: '15%' }} />
+            </div>
+            {/* Theme feature cards */}
+            <div className="relative z-10 p-6 md:p-10">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(168,85,247,0.15)', border: '1px solid rgba(168,85,247,0.3)' }}>
+                  <svg className="w-5 h-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-white font-bold text-xl">Obsidian</h3>
+                  <p className="text-neutral-400 text-xs">Pterodactyl Panel v1 Theme</p>
+                </div>
+              </div>
+              {/* Large preview */}
+              <div className="rounded-xl overflow-hidden border mx-auto relative" style={{ borderColor: 'rgba(255,255,255,0.08)', maxWidth: '75%' }}>
+                {obsidianScreens.map((screen, i) => (
+                  <img
+                    key={screen.label}
+                    src={screen.img}
+                    alt={screen.label}
+                    className="w-full transition-opacity duration-700 ease-in-out"
+                    style={{
+                      opacity: i === activeScreen ? 1 : 0,
+                      position: i === 0 ? 'relative' : 'absolute',
+                      top: 0,
+                      left: 0,
+                    }}
+                  />
+                ))}
+              </div>
+              {/* Thumbnails + tags row */}
+              <div className="flex gap-3 mt-3 items-start">
+                <div className="flex gap-2 flex-shrink-0">
+                  {obsidianScreens.map((screen, i) => (
+                    <button
+                      key={screen.label}
+                      onClick={() => setActiveScreen(i)}
+                      className="rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer"
+                      style={{
+                        borderColor: i === activeScreen ? 'rgba(168,85,247,0.6)' : 'rgba(255,255,255,0.06)',
+                        opacity: i === activeScreen ? 1 : 0.5,
+                        width: '80px',
+                      }}
+                    >
+                      <img src={screen.img} alt={screen.label} className="w-full h-11 object-cover object-top" />
+                      <p className="text-[9px] py-0.5 text-center" style={{ color: i === activeScreen ? '#c4b5fd' : 'rgba(148,148,184,0.5)' }}>{screen.label}</p>
+                    </button>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-1.5 items-center ml-auto">
+                  {["Glassmorphism", "Animated Orbs", "Dark Theme", "Blueprint", "Custom Login"].map((tag) => (
+                    <span key={tag} className="px-2.5 py-0.5 rounded-full text-[10px] font-medium" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(148,148,184,0.8)' }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="relative px-5 py-3">
+            <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
+              A premium dark gaming-inspired theme for Pterodactyl Panel v1 featuring glassmorphism UI, animated floating orbs, neon purple & cyan accents, and full admin + client panel coverage. Built with the Blueprint Framework.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
       <h2 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-neutral-900 dark:text-white relative z-20 mt-20">
