@@ -34,14 +34,24 @@ function CustomGridDemo() {
     { label: "Console", img: "/obsidian/console.png" },
     { label: "Admin Panel", img: "/obsidian/admin.png" },
   ];
+  const ivoryScreens = [
+    { label: "Login", img: "/ivory/login.png" },
+    { label: "Dashboard", img: "/ivory/dashboard.png" },
+    { label: "Console", img: "/ivory/console.png" },
+    { label: "Admin Panel", img: "/ivory/admin.png" },
+  ];
+  const [activeIvoryScreen, setActiveIvoryScreen] = useState(0);
+  const [activeTheme, setActiveTheme] = useState(0);
+  const themeNames = ["Obsidian", "Ivory"];
 
   useEffect(() => {
     if (workTab !== "themes") return;
     const interval = setInterval(() => {
       setActiveScreen((prev) => (prev + 1) % obsidianScreens.length);
+      setActiveIvoryScreen((prev) => (prev + 1) % ivoryScreens.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [workTab, obsidianScreens.length]);
+  }, [workTab, obsidianScreens.length, ivoryScreens.length]);
   const { resolvedTheme } = useTheme();
 
   const testimonials = [
@@ -389,9 +399,44 @@ function CustomGridDemo() {
         </div>
 
       {/* Pterodactyl Themes */}
-      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full ${workTab === "themes" ? "" : "hidden"}`}>
+      <div className={`w-full ${workTab === "themes" ? "" : "hidden"}`}>
+        {/* Theme Navigation */}
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <button
+            onClick={() => setActiveTheme((prev) => (prev - 1 + themeNames.length) % themeNames.length)}
+            className="w-10 h-10 rounded-full flex items-center justify-center border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all duration-200 cursor-pointer hover:scale-110"
+          >
+            <svg className="w-4 h-4 text-neutral-600 dark:text-neutral-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <div className="flex gap-2">
+            {themeNames.map((name, i) => (
+              <button
+                key={name}
+                onClick={() => setActiveTheme(i)}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                  i === activeTheme
+                    ? i === 0
+                      ? "bg-purple-600 text-white shadow-lg shadow-purple-500/25"
+                      : "text-white shadow-lg"
+                    : "bg-neutral-200 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-300 dark:hover:bg-neutral-700"
+                }`}
+                style={i === activeTheme && i === 1 ? { background: '#c8956c', boxShadow: '0 10px 25px -5px rgba(200,149,108,0.25)' } : undefined}
+              >
+                {name}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={() => setActiveTheme((prev) => (prev + 1) % themeNames.length)}
+            className="w-10 h-10 rounded-full flex items-center justify-center border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all duration-200 cursor-pointer hover:scale-110"
+          >
+            <svg className="w-4 h-4 text-neutral-600 dark:text-neutral-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+
+        <div className="relative overflow-hidden" style={{ display: 'grid' }}>
         {/* Obsidian Theme */}
-        <div className="group relative rounded-2xl overflow-hidden bg-[#f0e6d8] dark:bg-neutral-900 border border-neutral-400/40 dark:border-neutral-800 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_-15px_rgba(168,85,247,0.25)] sm:col-span-2 lg:col-span-3">
+        <div style={{ gridArea: '1/1', transition: 'opacity 0.5s ease-in-out', opacity: activeTheme === 0 ? 1 : 0, pointerEvents: activeTheme === 0 ? 'auto' : 'none', visibility: activeTheme === 0 ? 'visible' : 'hidden' }} className="group rounded-2xl overflow-hidden bg-[#f0e6d8] dark:bg-neutral-900 border border-neutral-400/40 dark:border-neutral-800">
           <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-purple-500/0 via-purple-500/0 to-cyan-500/0 group-hover:from-purple-500/20 group-hover:via-transparent group-hover:to-cyan-500/20 transition-all duration-500 pointer-events-none" />
           {/* Theme preview area */}
           <div className="relative w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a14 0%, #12122a 50%, #0a0a14 100%)' }}>
@@ -463,6 +508,78 @@ function CustomGridDemo() {
               A premium dark gaming-inspired theme for Pterodactyl Panel v1 featuring glassmorphism UI, animated floating orbs, neon purple & cyan accents, and full admin + client panel coverage. Built with the Blueprint Framework.
             </p>
           </div>
+        </div>
+
+        {/* Ivory Theme */}
+        <div style={{ gridArea: '1/1', transition: 'opacity 0.5s ease-in-out', opacity: activeTheme === 1 ? 1 : 0, pointerEvents: activeTheme === 1 ? 'auto' : 'none', visibility: activeTheme === 1 ? 'visible' : 'hidden' }} className="group rounded-2xl overflow-hidden bg-white dark:bg-neutral-900 border border-neutral-300/60 dark:border-neutral-800">
+          <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-yellow-500/0 via-yellow-500/0 to-amber-500/0 group-hover:from-yellow-500/15 group-hover:via-transparent group-hover:to-amber-500/15 transition-all duration-500 pointer-events-none" />
+          <div className="relative w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #faf8f4 0%, #f3f0e8 50%, #faf8f4 100%)' }}>
+            {/* Warm glow decorations */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute w-32 h-32 rounded-full opacity-20 blur-3xl" style={{ background: 'radial-gradient(circle, #c8956c, transparent)', top: '10%', right: '20%' }} />
+              <div className="absolute w-24 h-24 rounded-full opacity-15 blur-3xl" style={{ background: 'radial-gradient(circle, #d4a574, transparent)', bottom: '20%', left: '15%' }} />
+            </div>
+            <div className="relative z-10 p-6 md:p-10">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(200,149,108,0.15)', border: '1px solid rgba(200,149,108,0.3)' }}>
+                  <svg className="w-5 h-5" style={{ color: '#c8956c' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-xl" style={{ color: '#2d2a24' }}>Ivory</h3>
+                  <p className="text-xs" style={{ color: '#9e978e' }}>Pterodactyl Panel v1 Theme</p>
+                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden border mx-auto relative w-full md:max-w-[75%]" style={{ borderColor: 'rgba(200,149,108,0.2)' }}>
+                {ivoryScreens.map((screen, i) => (
+                  <img
+                    key={screen.label}
+                    src={screen.img}
+                    alt={screen.label}
+                    className="w-full transition-opacity duration-700 ease-in-out"
+                    style={{
+                      opacity: i === activeIvoryScreen ? 1 : 0,
+                      position: i === 0 ? 'relative' : 'absolute',
+                      top: 0,
+                      left: 0,
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="flex flex-col md:flex-row gap-3 mt-3 items-start">
+                <div className="grid grid-cols-4 gap-2 w-full md:w-auto md:flex md:flex-shrink-0">
+                  {ivoryScreens.map((screen, i) => (
+                    <button
+                      key={screen.label}
+                      onClick={() => setActiveIvoryScreen(i)}
+                      className="rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer"
+                      style={{
+                        borderColor: i === activeIvoryScreen ? 'rgba(200,149,108,0.6)' : 'rgba(200,149,108,0.15)',
+                        opacity: i === activeIvoryScreen ? 1 : 0.5,
+                      }}
+                    >
+                      <img src={screen.img} alt={screen.label} className="w-full h-11 object-cover object-top" />
+                      <p className="text-[9px] py-0.5 text-center" style={{ color: i === activeIvoryScreen ? '#c8956c' : 'rgba(158,151,142,0.5)' }}>{screen.label}</p>
+                    </button>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-1.5 items-center ml-auto">
+                  {["Warm Gold Palette", "Arabesque Pattern", "Light Theme", "Blueprint", "Custom Admin"].map((tag) => (
+                    <span key={tag} className="px-2.5 py-0.5 rounded-full text-[10px] font-medium" style={{ background: 'rgba(200,149,108,0.08)', border: '1px solid rgba(200,149,108,0.2)', color: '#b5804f' }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="relative px-5 py-3">
+            <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
+              A clean, warm professional light theme for Pterodactyl Panel v1 with cream/gold palette, arabesque geometric background patterns, redesigned admin pages, custom server cards, and full component-level theming. Built with the Blueprint Framework.
+            </p>
+          </div>
+        </div>
         </div>
       </div>
     </div>
