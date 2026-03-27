@@ -41,17 +41,25 @@ function CustomGridDemo() {
     { label: "Admin Panel", img: "/ivory/admin.png" },
   ];
   const [activeIvoryScreen, setActiveIvoryScreen] = useState(0);
+  const slateScreens = [
+    { label: "Login", img: "/slate/login.png" },
+    { label: "Dashboard", img: "/slate/dashboard.png" },
+    { label: "Console", img: "/slate/console.png" },
+    { label: "Admin Panel", img: "/slate/admin.png" },
+  ];
+  const [activeSlateScreen, setActiveSlateScreen] = useState(0);
   const [activeTheme, setActiveTheme] = useState(0);
-  const themeNames = ["Obsidian", "Ivory"];
+  const themeNames = ["Obsidian", "Ivory", "Slate"];
 
   useEffect(() => {
     if (workTab !== "themes") return;
     const interval = setInterval(() => {
       setActiveScreen((prev) => (prev + 1) % obsidianScreens.length);
       setActiveIvoryScreen((prev) => (prev + 1) % ivoryScreens.length);
+      setActiveSlateScreen((prev) => (prev + 1) % slateScreens.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [workTab, obsidianScreens.length, ivoryScreens.length]);
+  }, [workTab, obsidianScreens.length, ivoryScreens.length, slateScreens.length]);
   const { resolvedTheme } = useTheme();
 
   const testimonials = [
@@ -420,7 +428,7 @@ function CustomGridDemo() {
                       : "text-white shadow-lg"
                     : "bg-neutral-200 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-300 dark:hover:bg-neutral-700"
                 }`}
-                style={i === activeTheme && i === 1 ? { background: '#c8956c', boxShadow: '0 10px 25px -5px rgba(200,149,108,0.25)' } : undefined}
+                style={i === activeTheme && i === 1 ? { background: '#c8956c', boxShadow: '0 10px 25px -5px rgba(200,149,108,0.25)' } : i === activeTheme && i === 2 ? { background: '#4a90d9', boxShadow: '0 10px 25px -5px rgba(74,144,217,0.25)' } : undefined}
               >
                 {name}
               </button>
@@ -577,6 +585,75 @@ function CustomGridDemo() {
           <div className="relative px-5 py-3">
             <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
               A clean, warm professional light theme for Pterodactyl Panel v1 with cream/gold palette, arabesque geometric background patterns, redesigned admin pages, custom server cards, and full component-level theming. Built with the Blueprint Framework.
+            </p>
+          </div>
+        </div>
+
+        {/* Slate Theme */}
+        <div style={{ gridArea: '1/1', transition: 'opacity 0.5s ease-in-out', opacity: activeTheme === 2 ? 1 : 0, pointerEvents: activeTheme === 2 ? 'auto' : 'none', visibility: activeTheme === 2 ? 'visible' : 'hidden' }} className="group rounded-2xl overflow-hidden bg-[#0f1218] dark:bg-[#0f1218] border border-[#1e2533] dark:border-[#1e2533]">
+          <div className="relative w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0d14 0%, #0f1218 50%, #131720 100%)' }}>
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute w-32 h-32 rounded-full opacity-20 blur-3xl" style={{ background: 'radial-gradient(circle, #4a90d9, transparent)', top: '10%', right: '20%' }} />
+              <div className="absolute w-24 h-24 rounded-full opacity-15 blur-3xl" style={{ background: 'radial-gradient(circle, #6ba5e7, transparent)', bottom: '20%', left: '15%' }} />
+            </div>
+            <div className="relative z-10 p-6 md:p-10">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(74,144,217,0.15)', border: '1px solid rgba(74,144,217,0.3)' }}>
+                  <svg className="w-5 h-5" style={{ color: '#4a90d9' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-xl" style={{ color: '#e2e8f0' }}>Slate</h3>
+                  <p className="text-xs" style={{ color: '#64748b' }}>Pterodactyl Panel v1 Theme</p>
+                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden border mx-auto relative w-full md:max-w-[75%]" style={{ borderColor: 'rgba(74,144,217,0.2)' }}>
+                {slateScreens.map((screen, i) => (
+                  <img
+                    key={screen.label}
+                    src={screen.img}
+                    alt={screen.label}
+                    className="w-full transition-opacity duration-700 ease-in-out"
+                    style={{
+                      opacity: i === activeSlateScreen ? 1 : 0,
+                      position: i === 0 ? 'relative' : 'absolute',
+                      top: 0,
+                      left: 0,
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="flex flex-col md:flex-row gap-3 mt-3 items-start">
+                <div className="grid grid-cols-4 gap-2 w-full md:w-auto md:flex md:flex-shrink-0">
+                  {slateScreens.map((screen, i) => (
+                    <button
+                      key={screen.label}
+                      onClick={() => setActiveSlateScreen(i)}
+                      className="rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer"
+                      style={{
+                        borderColor: i === activeSlateScreen ? 'rgba(74,144,217,0.6)' : 'rgba(74,144,217,0.1)',
+                        opacity: i === activeSlateScreen ? 1 : 0.5,
+                      }}
+                    >
+                      <img src={screen.img} alt={screen.label} className="w-full h-11 object-cover object-top" />
+                      <p className="text-[9px] py-0.5 text-center" style={{ color: i === activeSlateScreen ? '#4a90d9' : 'rgba(100,116,139,0.5)', background: '#0f1218' }}>{screen.label}</p>
+                    </button>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-1.5 items-center ml-auto">
+                  {["Steel Blue Palette", "Dot Matrix BG", "Dark Theme", "Blueprint", "Split Login"].map((tag) => (
+                    <span key={tag} className="px-2.5 py-0.5 rounded-full text-[10px] font-medium" style={{ background: 'rgba(74,144,217,0.08)', border: '1px solid rgba(74,144,217,0.2)', color: '#6ba5e7' }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="relative px-5 py-3" style={{ background: '#0a0d14' }}>
+            <p className="text-xs leading-relaxed" style={{ color: '#64748b' }}>
+              A clean, corporate dark theme for Pterodactyl Panel v1 with steel blue accents, floating particle animations, dot matrix background, split-screen login, data-dense server cards, and metric strip admin dashboard. Built with the Blueprint Framework.
             </p>
           </div>
         </div>
